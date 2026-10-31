@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4e9dc">
+<title>مفاجأة لمروة ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=DM+Serif+Display&display=swap');
+:root{--paper:#f4e9dc;--ink:#4b3835;--rose:#a95f63}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;background:var(--paper);color:var(--ink);font-family:Cairo,serif;display:grid;place-items:center;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(#9c806c .55px,transparent .55px);background-size:7px 7px}
+main{width:100%;min-height:100svh;display:grid;place-items:center;padding:22px}
+.panel{width:min(92vw,520px);text-align:center;position:relative;z-index:1}
+.kicker{font-size:13px;letter-spacing:3px;color:#9c7c6e;margin-bottom:12px}
+h1{font-family:"DM Serif Display",serif;font-size:clamp(42px,11vw,66px);font-weight:400;line-height:1.05;color:#8e5558;margin:8px 0 14px;direction:ltr}
+p{font-size:16px;line-height:2;color:#725d54;margin:0 auto 24px}
+button{font:700 15px Cairo,sans-serif;color:#fff;background:#9e6265;border:0;border-radius:3px;padding:13px 27px;cursor:pointer;box-shadow:0 8px 22px #79505225;transition:transform .2s,background .2s}
+button:hover{transform:translateY(-2px);background:#854e52}
+.decor{font-size:30px;letter-spacing:12px;margin:10px 0 20px;filter:saturate(.75)}
+#show{display:none;animation:fade .9s ease both}
+.video-frame{display:inline-block;max-height:78svh;max-width:88vw;overflow:hidden;box-shadow:0 14px 45px #45332d25;border:7px solid #fff9f1;background:#201b24}
+video{display:block;height:min(78svh,780px);width:auto;max-width:calc(88vw - 14px);object-fit:contain;background:#201b24}
+.end{font-size:14px;letter-spacing:1px;margin-top:15px;color:#8b7066;min-height:25px}
+#replay{display:none;margin-top:12px;background:#b28b79}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+@media(max-width:500px){main{padding:14px}.video-frame{border-width:5px}p{font-size:14px}}
+</style>
+</head>
+<body>
+<main>
+<section class="panel">
+<div id="intro">
+<div class="kicker">A LITTLE SURPRISE FOR YOU</div>
+<div class="decor">♡ ✦ ♡</div>
+<h1>For Marwa</h1>
+<p>مروة، كاينة مفاجأة صغيرة كتسناك…<br>اضغطي على الزر وخلي اللحظة تبدا 🎂</p>
+<button id="start">افتحي المفاجأة ♡</button>
+</div>
+<div id="show">
+<div class="video-frame">
+<video id="birthday" playsinline preload="auto">
+<source src="birthday-video.mp4" type="video/mp4">
+المتصفح ديالك ما كيدعمش تشغيل الفيديو.
+</video>
+</div>
+<div class="end" id="endText">كل عام وأنتِ بخير يا مروة ♡</div>
+<button id="replay">عاودي المفاجأة</button>
+</div>
+</section>
+</main>
+<script>
+const intro=document.getElementById('intro');
+const show=document.getElementById('show');
+const video=document.getElementById('birthday');
+const replay=document.getElementById('replay');
+document.getElementById('start').addEventListener('click',async()=>{
+ intro.style.display='none';show.style.display='block';
+ try{await video.play()}catch(e){replay.style.display='inline-block';document.getElementById('endText').textContent='اضغطي على تشغيل الفيديو لمشاهدة المفاجأة ♡'}
+});
+video.addEventListener('ended',()=>{replay.style.display='inline-block';document.getElementById('endText').textContent='كل عام وأنتِ بخير يا مروة ♡'});
+replay.addEventListener('click',()=>{video.currentTime=0;replay.style.display='none';video.play()});
+</script>
+</body>
+</html>
